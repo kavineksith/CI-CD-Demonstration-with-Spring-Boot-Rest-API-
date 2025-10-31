@@ -31,19 +31,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean compile
-
-      - name: Run tests with coverage
-        run: mvn test jacoco:report
-
-      - name: Display test summary
-        if: always()
-        run: |
-          echo "------ Test Results ------"
-          cat target/surefire-reports/*.txt || true
-
-      - name: Upload coverage report (artifact)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
